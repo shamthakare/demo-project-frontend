@@ -4,8 +4,8 @@ import { CreateComponent } from './create/create.component';
 import { ReadComponent } from './read/read.component';
 
 const routes: Routes = [
-  {path:'create',component:CreateComponent},
-  {path:'read',component:ReadComponent}
+  { path: 'create', component: CreateComponent },
+  { path: 'read', component: ReadComponent }
 ];
 
 @NgModule({

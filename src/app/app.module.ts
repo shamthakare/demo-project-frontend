@@ -6,9 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreateComponent } from './create/create.component';
 import { ReadComponent } from './read/read.component';
-import {HttpClientModule,} from '@angular/common/http';
+import { HttpClientModule, } from '@angular/common/http';
 import { ApiserviceService } from './apiservice.service';
-@NgModule ({
+@NgModule({
   declarations: [
     AppComponent,
     CreateComponent,
@@ -16,11 +16,12 @@ import { ApiserviceService } from './apiservice.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,FormsModule,
+    AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-  
   ],
+
   providers: [ApiserviceService],
   bootstrap: [AppComponent]
 })

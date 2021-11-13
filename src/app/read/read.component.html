@@ -1,1 +1,14 @@
-<p>read works!</p>
+<table class="table table-bordered">
+    <tr>
+        <td>ID</td>
+        <td>Full Name</td>
+        <td>Email</td>
+        <td>Mobile</td>
+    </tr>
+    <tr *ngFor="let d of readUser">
+      <td>{{d.id}}</td>
+      <td>{{d.fullname}}</td>
+      <td>{{d.email}}</td>
+      <td>{{d.mobile}}</td>
+    </tr>
+</table>

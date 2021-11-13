@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -6,9 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiserviceService {
-apiUrl="http://localhost:3000/users";
-  constructor(private Http: HttpClient) { }
-  getAllUser(): Observable<any>{
-    return this.Http.get (`${this.apiUrl}`);
+  baseUrl = `http://localhost:3000`;
+  constructor(private httpClient: HttpClient) { }
+  getUserList(): Observable<any> {
+    return this.httpClient.get(`${this.baseUrl}/users`)
   }
 }
