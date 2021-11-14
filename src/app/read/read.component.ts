@@ -8,10 +8,28 @@ import { ApiserviceService } from '../apiservice.service';
 export class ReadComponent implements OnInit {
   constructor(private api: ApiserviceService) { }
   readUser: any;
+  successmsg: any;
   ngOnInit(): void {
+    this.getalldata();
+  }
+
+  getalldata() {
     this.api.getUserList().subscribe((res) => {
-      console.log('get All Data', res);
       this.readUser = res.data;
     })
+  }
+
+  //delete Id
+  deleteId(id: any) {
+    this.api.deleteData(id).subscribe((res) => {
+      this.successmsg = res.massage;
+    })
+    this.getalldata();
+  }
+  editId(id: any) {
+    this.api.deleteData(id).subscribe((res) => {
+      this.successmsg = res.massage;
+    })
+    this.getalldata();
   }
 }
