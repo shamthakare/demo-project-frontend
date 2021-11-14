@@ -22,10 +22,16 @@ export class ApiserviceService {
     return this.http.post(`${this.createUrl} `, data);
   }
   //delete id
-deleteData(id: any): Observable < any > {
-  let ids =id;
-  return this.http.delete(`${this.createUrl}/${ids}`);
-}
+  deleteData(id: any): Observable<any> {
+    let ids = id;
+    return this.http.delete(`${this.createUrl}/${ids}`);
+  }
+
+  //delete id
+  updateData(data: any, id: any): Observable<any> {
+    let ids = id;
+    return this.http.put(`${this.createUrl}/${ids}`, data);
+  }
 }
 
 

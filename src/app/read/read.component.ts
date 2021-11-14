@@ -16,20 +16,21 @@ export class ReadComponent implements OnInit {
   getalldata() {
     this.api.getUserList().subscribe((res) => {
       this.readUser = res.data;
-    })
+    });
   }
 
   //delete Id
   deleteId(id: any) {
     this.api.deleteData(id).subscribe((res) => {
       this.successmsg = res.massage;
-    })
-    this.getalldata();
+      this.getalldata();
+    });
   }
-  editId(id: any) {
-    this.api.deleteData(id).subscribe((res) => {
+  // edit by Id
+  editId(data: any, id: any) {
+    this.api.updateData(data, id).subscribe((res) => {
       this.successmsg = res.massage;
-    })
-    this.getalldata();
+      this.getalldata();
+    });
   }
 }

@@ -8,15 +8,11 @@ import { ApiserviceService } from '../apiservice.service';
   styleUrls: ['./create.component.scss']
 })
 export class CreateComponent implements OnInit {
-  // userform=  new FormGroup({})
 
   constructor(private api: ApiserviceService) { }
-  errmsg:any;
-  successmsg:any;
-
-  ngOnInit(): void {
-
-  }
+  errmsg: any;
+  successmsg: any;
+  ngOnInit(): void {}
   userform = new FormGroup({
     'fullname': new FormControl('', Validators.required),
     'email': new FormControl('', Validators.required),
@@ -24,21 +20,14 @@ export class CreateComponent implements OnInit {
   })
 
   usersubmit() {
-    // console.log(this.userform.value);
-    if(this.userform.valid){
-      console.log(this.userform.value);
-      this.api.createData(this.userform.value).subscribe((res)=>{
-        console.log(res,'Data added successful');
+    if (this.userform.valid) {
+      this.api.createData(this.userform.value).subscribe((res) => {
         this.userform.reset();
-        this.successmsg= res.massage;
+        this.successmsg = res.massage;
       })
     }
-    else{
-      this.errmsg='All fileds are required';
-
+    else {
+      this.errmsg = 'All fileds are required';
     }
-
-
   }
-
 }

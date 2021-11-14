@@ -1,21 +1,32 @@
-<div  *ngIf="successmsg"class="alert alert-success alert-dismissible fade show" role="alert">
+<div *ngIf="successmsg" class="alert alert-success alert-dismissible fade show" role="alert">
   <strong>{{successmsg}}</strong>
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
-<table class="table ">
+
+
+
+<table class="table table-bordered">
+  <thead class="thead-dark">
     <tr>
-        <td>ID</td>
-        <td>Full Name</td>
-        <td>Email</td>
-        <td>Mobile</td>
-        <td colspan="2">Action</td>
+      <th scope="col">ID</th>
+      <th scope="col">Full Name </th>
+      <th scope="col">Email</th>
+      <th scope="col">Mobile</th>
+      <th scope="col" colspan="2">Action</th>
     </tr>
+  </thead>
+  <tbody>
     <tr *ngFor="let d of readUser">
-      <td>{{d.id}}</td>
+      <th scope="row">{{d.id}}</th>
       <td>{{d.fullname}}</td>
       <td>{{d.email}}</td>
       <td>{{d.mobile}}</td>
-      <td><button class="btn btn-flat" (click)="editId(d.id)">Edit</button></td>
-      <td><button class="btn btn-flat" (click)="deleteId(d.id)">Delete</button></td>
+      <td>
+        <a class="btn btn-flat" [routerLink]="['/create',d.id]">Edit</a>
+      </td>
+      <td>
+        <button class="btn btn-flat" (click)="deleteId(d.id)">Delete</button>
+      </td>
     </tr>
+  </tbody>
 </table>
