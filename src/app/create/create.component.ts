@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiserviceService } from '../apiservice.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CreateComponent implements OnInit {
 
-  constructor(private api: ApiserviceService, private router: ActivatedRoute) { }
+  constructor(private api: ApiserviceService,private _route:Router, private router: ActivatedRoute) { }
   errmsg: any;
   successmsg: any;
   getparamid: any;
@@ -39,6 +39,8 @@ export class CreateComponent implements OnInit {
       this.api.createData(this.userform.value).subscribe((res) => {
         this.userform.reset();
         this.successmsg = res.massage;
+        this._route.navigate(['/read']);
+
       })
     }
     else {
@@ -53,6 +55,7 @@ export class CreateComponent implements OnInit {
       this.api.updateData(this.userform.value, this.getparamid).subscribe((res) => {
         console.log(res, "Data update successful");
         this.successmsg = res.massage;
+        this._route.navigate(['/read']);
       })
     } else {
       this.errmsg = 'All fileds are require';
