@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiserviceService } from '../apiservice.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -9,10 +10,24 @@ import { ApiserviceService } from '../apiservice.service';
 })
 export class CreateComponent implements OnInit {
 
-  constructor(private api: ApiserviceService) { }
+  constructor(private api: ApiserviceService, private router: ActivatedRoute) { }
   errmsg: any;
   successmsg: any;
-  ngOnInit(): void {}
+  getparamid: any;
+  ngOnInit(): void {
+    this.getparamid = this.router.snapshot.paramMap.get('id');
+    if (this.getparamid) {
+      this.api.getSingleData(this.getparamid).subscribe((res) => {
+        console.log(res, 'select update Data');
+        this.userform.patchValue({
+          fullname: res.data[0].fullname,
+          email: res.data[0].email,
+          mobile: res.data[0].mobile
+        })
+      })
+    }
+  }
+
   userform = new FormGroup({
     'fullname': new FormControl('', Validators.required),
     'email': new FormControl('', Validators.required),
@@ -30,4 +45,20 @@ export class CreateComponent implements OnInit {
       this.errmsg = 'All fileds are required';
     }
   }
+
+
+  //Update user
+  updateUser() {
+    if (this.userform.valid) {
+      this.api.updateData(this.userform.value, this.getparamid).subscribe((res) => {
+        console.log(res, "Data update successful");
+        this.successmsg = res.massage;
+      })
+    } else {
+      this.errmsg = 'All fileds are require';
+
+    }
+
+  }
+
 }

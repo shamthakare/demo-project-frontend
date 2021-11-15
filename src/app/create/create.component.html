@@ -12,7 +12,7 @@
   </div>
 
 
-  <form [formGroup]="userform" (ngSubmit)="usersubmit()">
+  <form [formGroup]="userform" >
     <div class="col-md-4 mt-2">
     <input type="text" class="form-control" formControlName="fullname" placeholder="Enter fullname">
   </div>
@@ -22,9 +22,18 @@
   <div class="col-md-4 mt-2">
     <input type="number" class="form-control"formControlName="mobile" placeholder="Enter mobile">
   </div>
-  <div class="col-md-4 mt-2">
-<button class="btn btn-primary text-center">Create User</button>
+<!-- this is a optional
+  <div class="col-md-4 mt-2"  >
+    <button class="btn   text-center {{!getparamid?'btn-primary':'btn-success'}}">{{!getparamid?'Create User':'Update User'}}</button>
+    </div> -->
+
+  <div class="col-md-4 mt-2" *ngIf="!getparamid">
+<button class="btn btn-primary text-center" (click)="usersubmit()">Create User</button>
 </div>
+
+<div class="col-md-4 mt-2" *ngIf="getparamid" (click)="updateUser()">
+  <button class="btn btn-success text-center">Update User</button>
+  </div>
   </form>
 </div>
 </div>

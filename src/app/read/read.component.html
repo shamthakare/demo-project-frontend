@@ -21,11 +21,8 @@
       <td>{{d.fullname}}</td>
       <td>{{d.email}}</td>
       <td>{{d.mobile}}</td>
-      <td>
-        <a class="btn btn-flat" [routerLink]="['/create',d.id]">Edit</a>
-      </td>
-      <td>
-        <button class="btn btn-flat" (click)="deleteId(d.id)">Delete</button>
+      <td><a class="btn btn-primary" [routerLink]="['/create',d.id]">Update</a> </td>
+      <td><button class="btn btn-danger" (click)="deleteId(d.id)">Delete</button>
       </td>
     </tr>
   </tbody>

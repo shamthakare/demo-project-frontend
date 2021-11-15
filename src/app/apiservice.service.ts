@@ -32,6 +32,9 @@ export class ApiserviceService {
     let ids = id;
     return this.http.put(`${this.createUrl}/${ids}`, data);
   }
+  //getSingleData
+  getSingleData(id:any):Observable<any>{
+    let ids=id;
+    return this.http.get(`${this.createUrl}/${ids}`);
+  }
 }
-
-
